@@ -32,7 +32,6 @@ export function GoldWidget({ iteration, onBuy }: Props) {
   useEffect(() => {
     if (iteration === 8) {
       setSliderValue(Math.round(price * 50));
-      setUnitSize('10mg');
     } else if (iteration === 7) {
       setSliderValue(5000);
       setUnitSize('10mg');
@@ -135,8 +134,8 @@ export function GoldWidget({ iteration, onBuy }: Props) {
 
       <div className="gold-card" style={iteration === 6 || iteration === 7 || iteration === 8 ? { gap: 32 } : undefined}>
         {iteration === 8 ? (() => {
-          const unitPrice8 = unitSize === '10mg' ? price : price * 100;
-          const maxAmt8 = unitSize === '10mg' ? Math.floor(10000 * unitPrice8) : Math.floor(100 * unitPrice8);
+          const unitPrice8 = price;
+          const maxAmt8 = Math.floor(10000 * unitPrice8);
           const minAmt8 = Math.ceil(unitPrice8);
           const wholeUnits8 = Math.floor(sliderValue / unitPrice8);
           const approxReq8 = Math.round(wholeUnits8 * unitPrice8);
@@ -144,31 +143,11 @@ export function GoldWidget({ iteration, onBuy }: Props) {
           return (
           <>
             <div className="gold7-section">
-              <div className="gold7-toggle">
-                <button
-                  className={`gold7-toggle__pill ${unitSize === '10mg' ? 'gold7-toggle__pill--active' : ''}`}
-                  onClick={() => {
-                    setUnitSize('10mg');
-                    setSliderValue(Math.round(price * 50));
-                  }}
-                >
-                  10MG
-                </button>
-                <button
-                  className={`gold7-toggle__pill ${unitSize === '1g' ? 'gold7-toggle__pill--active' : ''}`}
-                  onClick={() => {
-                    setUnitSize('1g');
-                    setSliderValue(Math.round(price * 100 * 5));
-                  }}
-                >
-                  1G
-                </button>
-              </div>
               <div className="gold7-qty">
                 <span className="gold7-qty__label">AMOUNT</span>
                 <span className="gold7-qty__value">₹{formatIndianWhole(approxReq8)}</span>
                 {wholeUnits8 > 0 && (
-                  <span className="gold8-units-note">{wholeUnits8} {unitSize === '10mg' ? '× 10mg' : '× 1g'} unit{wholeUnits8 !== 1 ? 's' : ''}</span>
+                  <span className="gold8-units-note">{wholeUnits8} × 10mg unit{wholeUnits8 !== 1 ? 's' : ''}</span>
                 )}
               </div>
               <div className="gold7-slider-wrap">
@@ -187,7 +166,7 @@ export function GoldWidget({ iteration, onBuy }: Props) {
               </div>
             </div>
             <div className="gold8-price-row">
-              <span className="gold8-price-row__label">GOLD PRICE ({unitSize === '10mg' ? '10MG' : '1G'})</span>
+              <span className="gold8-price-row__label">GOLD PRICE (10MG)</span>
               <span className="gold8-price-row__value">₹{formatIndian(unitPrice8)}</span>
             </div>
             <div className="needle-section__footer">
