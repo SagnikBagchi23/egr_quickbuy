@@ -1,0 +1,143 @@
+.explore-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.section-heading {
+  font-family: 'Sohne', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--contentPrimary);
+}
+
+/* Watchlist */
+.watchlist-section {
+}
+
+.watchlist-section__header {
+  padding: 24px 16px 0 16px;
+}
+
+.watchlist-section__items {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 16px 8px 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.watchlist-section__items::-webkit-scrollbar { display: none; }
+
+.watchlist-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 56px;
+  flex-shrink: 0;
+}
+
+.watchlist-item__logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid var(--borderPrimary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--backgroundSurfaceZ1);
+}
+
+.watchlist-item__logo-text {
+  font-family: 'GrowwSans', sans-serif;
+  font-weight: 500;
+  font-size: 10px;
+  color: var(--contentSecondary);
+}
+
+.watchlist-item__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+}
+
+.watchlist-item__name {
+  font-family: 'GrowwSans', sans-serif;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  color: var(--contentPrimary);
+  text-align: center;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.watchlist-item__change {
+  font-family: 'GrowwSans', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  text-align: center;
+}
+
+/* Most traded */
+.most-traded-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 0 16px 16px 16px;
+}
+
+.stock-card {
+  background: var(--backgroundSurfaceZ1);
+  border: 1px solid var(--borderPrimary);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.stock-card__logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid var(--borderPrimary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  font-family: 'GrowwSans', sans-serif;
+  font-weight: 500;
+  font-size: 10px;
+  color: var(--contentSecondary);
+  background: var(--backgroundSurfaceZ2);
+}
+
+.stock-card__name {
+  font-family: 'GrowwSans', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--contentPrimary);
+  margin-bottom: 24px;
+}
+
+.stock-card__price {
+  font-family: 'GrowwSans', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--contentPrimary);
+}
+
+.stock-card__change {
+  font-family: 'GrowwSans', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+}

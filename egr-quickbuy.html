@@ -1,0 +1,1042 @@
+<title>EGR Quick Buy</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Icon stylesheet -->
+<link rel="stylesheet" href="https://mint-design-system.vercel.app/icons/standard/groww-huge-standard.css">
+
+<style>
+  @font-face {
+    font-family: 'Sohne';
+    src: url('https://mint-design-system.vercel.app/typography/Sohne-Kraftig.otf') format('opentype');
+    font-weight: 500;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'GrowwSans';
+    src: url('https://mint-design-system.vercel.app/typography/GrowwSans-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'GrowwSans';
+    src: url('https://mint-design-system.vercel.app/typography/GrowwSans-Medium.otf') format('opentype');
+    font-weight: 500;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'GrowwHugeStandard';
+    src: url('https://mint-design-system.vercel.app/icons/standard/groww-huge-standard.woff2') format('woff2'),
+         url('https://mint-design-system.vercel.app/icons/standard/groww-huge-standard.otf') format('opentype');
+    font-display: swap;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --backgroundPrimary: #FFFFFF;
+    --backgroundSurfaceZ1: #FFFFFF;
+    --backgroundSurfaceZ2: #F7F7F7;
+    --backgroundSecondary: #F7F7F7;
+    --backgroundTertiary: #EFF0F1;
+    --backgroundAccent: #04B488;
+    --backgroundNegative: #ED5533;
+    --backgroundPositive: #04B488;
+    --backgroundWarning: #E7A71E;
+    --backgroundAccentSubtle: #E9FAF3;
+    --backgroundNegativeSubtle: #FFF1ED;
+    --backgroundPositiveSubtle: #E9FAF3;
+    --backgroundWarningSubtle: #FFF7DE;
+    --backgroundDisabled: #F7F7F7;
+    --backgroundTransparent: transparent;
+    --backgroundInversePrimary: #353839;
+    --backgroundSurfaceDocked: #FFFFFF;
+    --backgroundAccentSecondary: #5669FF;
+    --borderPrimary: #E7E8E9;
+    --borderAccent: #04B488;
+    --borderNegative: #ED5533;
+    --borderDisabled: #EFF0F1;
+    --borderNeutral: #353839;
+    --contentPrimary: #353839;
+    --contentSecondary: #7F8283;
+    --contentTertiary: #898C8E;
+    --contentDisabled: #BABBBC;
+    --contentAccent: #04B488;
+    --contentPositive: #04B488;
+    --contentNegative: #ED5533;
+    --contentWarning: #E7A71E;
+    --contentOnColour: #FFFFFF;
+    --contentOnAccentSubtle: #00825C;
+    --contentOnPositiveSubtle: #00825C;
+    --contentOnNegativeSubtle: #D23A15;
+    --contentOnWarningSubtle: #A16B00;
+    --contentAccentSecondary: #5669FF;
+    --contentInversePrimary: #FFFFFF;
+
+    --page-bg: #f0f1f3;
+    --panel-bg: #ffffff;
+    --panel-border: #e0e1e2;
+    --panel-text: #353839;
+    --panel-text-secondary: #7F8283;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --page-bg: #1a1c1e;
+      --panel-bg: #252a2c;
+      --panel-border: #363b3d;
+      --panel-text: #f2f5f7;
+      --panel-text-secondary: #989EA0;
+    }
+  }
+  :root[data-theme="dark"] {
+    --page-bg: #1a1c1e;
+    --panel-bg: #252a2c;
+    --panel-border: #363b3d;
+    --panel-text: #f2f5f7;
+    --panel-text-secondary: #989EA0;
+  }
+
+  body {
+    font-family: 'GrowwSans', -apple-system, sans-serif;
+    font-weight: 400;
+    background: var(--page-bg);
+    color: var(--panel-text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 32px 16px;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  /* Typography utilities */
+  .body-small { font-family: 'GrowwSans', sans-serif; font-weight: 400; font-size: 12px; line-height: 18px; }
+  .body-small-heavy { font-family: 'GrowwSans', sans-serif; font-weight: 500; font-size: 12px; line-height: 18px; }
+  .body-base { font-family: 'GrowwSans', sans-serif; font-weight: 400; font-size: 14px; line-height: 20px; }
+  .body-base-heavy { font-family: 'GrowwSans', sans-serif; font-weight: 500; font-size: 14px; line-height: 20px; }
+  .body-large { font-family: 'GrowwSans', sans-serif; font-weight: 400; font-size: 16px; line-height: 24px; }
+  .body-large-heavy { font-family: 'GrowwSans', sans-serif; font-weight: 500; font-size: 16px; line-height: 24px; }
+  .heading-eyebrow { font-family: 'Sohne', sans-serif; font-weight: 500; font-size: 10px; line-height: 12px; letter-spacing: 0.2em; text-transform: uppercase; }
+  .heading-xsmall { font-family: 'Sohne', sans-serif; font-weight: 500; font-size: 14px; line-height: 20px; }
+  .heading-small { font-family: 'Sohne', sans-serif; font-weight: 500; font-size: 16px; line-height: 24px; }
+  .heading-base { font-family: 'Sohne', sans-serif; font-weight: 500; font-size: 18px; line-height: 28px; }
+  .heading-large { font-family: 'Sohne', sans-serif; font-weight: 500; font-size: 20px; line-height: 32px; }
+
+  /* IconView */
+  .mds-iconview { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; color: inherit; }
+  .mds-iconview--xsmall { width: 12px; height: 12px; font-size: 12px; }
+  .mds-iconview--small { width: 16px; height: 16px; font-size: 16px; }
+  .mds-iconview--medium { width: 20px; height: 20px; font-size: 20px; }
+  .mds-iconview--large { width: 24px; height: 24px; font-size: 24px; }
+  .mds-iconview--xlarge { width: 28px; height: 28px; font-size: 28px; }
+
+  /* ── Phone frame ── */
+  .phone-frame {
+    width: 375px;
+    height: 812px;
+    border-radius: 40px;
+    border: 8px solid #1a1a1a;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+    background: var(--backgroundPrimary);
+  }
+
+  .phone-screen {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    scrollbar-width: none;
+  }
+  .phone-screen::-webkit-scrollbar { display: none; }
+
+  .screen { display: none; flex-direction: column; min-height: 100%; }
+  .screen.active { display: flex; }
+
+  /* ── L0 App Bar ── */
+  .app-bar-l0 {
+    height: 80px;
+    padding: 24px 16px 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--backgroundPrimary);
+    flex-shrink: 0;
+  }
+  .app-bar-l0__left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .app-bar-l0__logo {
+    width: 24px; height: 24px; border-radius: 4px; object-fit: contain;
+  }
+  .app-bar-l0__right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .app-bar-l0__right .mds-iconview { cursor: pointer; }
+  .app-bar-l0__avatar {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--backgroundTertiary);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--contentSecondary);
+  }
+
+  /* ── Standard App Bar ── */
+  .app-bar-std {
+    height: 80px;
+    padding: 24px 8px 0 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--backgroundPrimary);
+    flex-shrink: 0;
+  }
+  .app-bar-std__nav {
+    width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; background: none; border: none;
+    color: var(--contentPrimary);
+  }
+  .app-bar-std__title {
+    flex: 1;
+  }
+
+  /* ── Scrollable content ── */
+  .scroll-content {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 80px;
+  }
+
+  /* ── Gold Widget Card ── */
+  .gold-card {
+    margin: 16px;
+    background: var(--backgroundSurfaceZ1);
+    border: 1px solid var(--borderPrimary);
+    border-radius: 16px;
+    padding: 16px;
+  }
+  .gold-card__eyebrow {
+    color: var(--contentTertiary);
+    margin-bottom: 4px;
+  }
+  .gold-card__title {
+    color: var(--contentPrimary);
+    margin-bottom: 4px;
+  }
+  .gold-card__price {
+    color: var(--contentPrimary);
+    margin-bottom: 16px;
+  }
+
+  /* Slider */
+  .slider-section { margin-bottom: 16px; }
+  .slider-label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    outline: none;
+    background: var(--backgroundTertiary);
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--backgroundAccent);
+    cursor: pointer;
+    border: 3px solid var(--contentOnColour);
+    box-shadow: 0 0 0 1px var(--backgroundAccent);
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--backgroundAccent);
+    cursor: pointer;
+    border: 3px solid var(--contentOnColour);
+    box-shadow: 0 0 0 1px var(--backgroundAccent);
+  }
+
+  /* Preset chips */
+  .preset-chips {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .preset-chips::-webkit-scrollbar { display: none; }
+
+  /* Pill styles */
+  .mds-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    border-radius: 99px;
+    border: 1px solid var(--borderPrimary);
+    background: transparent;
+    padding: 8px 16px;
+    gap: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: 'GrowwSans', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    flex-shrink: 0;
+  }
+  .mds-pill--selected {
+    background: var(--backgroundTertiary);
+    border-color: var(--borderNeutral);
+    border-width: 1.5px;
+  }
+  .mds-pill__label {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+    color: var(--contentPrimary);
+  }
+
+  /* Stylised pill group */
+  .pill-group-stylised {
+    display: inline-flex;
+    gap: 4px;
+    background: var(--backgroundTertiary);
+    border-radius: 99px;
+    padding: 4px;
+  }
+  .pill-group-stylised .mds-pill {
+    height: 28px;
+    padding: 4px 12px;
+    border: none;
+    background: transparent;
+    border-radius: 99px;
+  }
+  .pill-group-stylised .mds-pill--selected {
+    background: var(--backgroundSurfaceZ1);
+    border: 1.5px solid var(--borderNeutral);
+  }
+
+  /* Summary row */
+  .summary-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+  .summary-col { flex: 1; }
+  .summary-col__label { color: var(--contentSecondary); margin-bottom: 2px; }
+  .summary-col__value { color: var(--contentPrimary); }
+  .summary-col__value--positive { color: var(--contentPositive); }
+
+  .units-note {
+    color: var(--contentSecondary);
+    margin-bottom: 12px;
+  }
+
+  /* Returns timeframe row */
+  .returns-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+
+  /* CTA Button */
+  .btn-primary-large {
+    width: 100%;
+    height: 48px;
+    border-radius: 8px;
+    border: none;
+    background: var(--backgroundAccent);
+    color: var(--contentOnColour);
+    font-family: 'GrowwSans', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn-primary-large:active {
+    background: #00A87D;
+  }
+
+  /* ── Section stub (Most Traded) ── */
+  .section-stub {
+    padding: 16px;
+  }
+  .section-stub__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  /* ── List row item ── */
+  .list-row {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    gap: 16px;
+    background: var(--backgroundTransparent);
+    min-height: 72px;
+  }
+  .list-row + .list-row {
+    border-top: 1px solid var(--borderPrimary);
+  }
+  .list-row__thumb {
+    width: 40px; height: 40px; border-radius: 8px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+  .list-row__thumb-fallback {
+    width: 40px; height: 40px; border-radius: 8px;
+    background: var(--backgroundTertiary);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--contentSecondary);
+    font-family: 'GrowwSans', sans-serif; font-size: 12px; font-weight: 500;
+    flex-shrink: 0;
+  }
+  .list-row__middle {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .list-row__label {
+    color: var(--contentPrimary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .list-row__sub {
+    color: var(--contentSecondary);
+  }
+  .list-row__trailing {
+    text-align: right;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .list-row__trailing-value { color: var(--contentPrimary); }
+  .list-row__trailing-sub { color: var(--contentSecondary); }
+  .list-row__trailing-sub--positive { color: var(--contentPositive); }
+  .list-row__trailing-sub--negative { color: var(--contentNegative); }
+
+  /* ── Bottom Nav ── */
+  .mds-bottom-nav {
+    display: flex;
+    align-items: stretch;
+    background: var(--backgroundSurfaceDocked);
+    border-top: 1px solid var(--borderPrimary);
+    height: 64px;
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    flex-shrink: 0;
+    z-index: 10;
+  }
+  .mds-bottom-nav__tab {
+    flex: 1 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: var(--contentTertiary);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .mds-bottom-nav__tab--active {
+    color: var(--contentAccentSecondary);
+  }
+  .mds-bottom-nav__icon {
+    font-size: 24px;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+  }
+  .mds-bottom-nav__label {
+    font-family: 'Sohne', sans-serif;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 1.2;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  /* ── Snackbar ── */
+  .snackbar {
+    position: absolute;
+    bottom: 80px;
+    left: 16px;
+    right: 16px;
+    background: var(--backgroundPositiveSubtle);
+    border-radius: 8px;
+    padding: 12px 16px;
+    z-index: 20;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+  }
+  .snackbar.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .snackbar__text {
+    color: var(--contentOnPositiveSubtle);
+  }
+
+  /* ── Toggle Panel (outside phone) ── */
+  .toggle-panel {
+    background: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    border-radius: 12px;
+    padding: 24px;
+    width: 260px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 32px;
+  }
+  .toggle-panel__title {
+    font-family: 'Sohne', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--panel-text);
+    margin-bottom: 16px;
+  }
+  .toggle-panel__group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .toggle-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    cursor: pointer;
+  }
+  .toggle-option input[type="radio"] {
+    accent-color: #04B488;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+  .toggle-option__label {
+    font-family: 'GrowwSans', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--panel-text);
+  }
+  .toggle-option__desc {
+    font-family: 'GrowwSans', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    color: var(--panel-text-secondary);
+    margin-top: 2px;
+  }
+  .toggle-panel__divider {
+    border: none;
+    border-top: 1px solid var(--panel-border);
+    margin: 16px 0;
+  }
+  .toggle-panel__info {
+    font-family: 'GrowwSans', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    color: var(--panel-text-secondary);
+  }
+  .toggle-panel__info strong {
+    color: var(--panel-text);
+    font-weight: 500;
+  }
+</style>
+
+<div class="toggle-panel">
+  <div class="toggle-panel__title">Input Mode</div>
+  <div class="toggle-panel__group">
+    <label class="toggle-option">
+      <input type="radio" name="mode" value="units" checked onchange="switchMode('units')">
+      <div>
+        <div class="toggle-option__label">Units (Qty)</div>
+        <div class="toggle-option__desc">Slider selects whole EGR units (1–100)</div>
+      </div>
+    </label>
+    <label class="toggle-option">
+      <input type="radio" name="mode" value="amount" onchange="switchMode('amount')">
+      <div>
+        <div class="toggle-option__label">Amount (₹)</div>
+        <div class="toggle-option__desc">Preset chips + slider, auto-calculates whole units</div>
+      </div>
+    </label>
+  </div>
+  <hr class="toggle-panel__divider">
+  <div class="toggle-panel__info">
+    <strong>EGR</strong> — Electronic Gold Receipt, a SEBI-regulated instrument. Each unit = 10mg of gold.<br><br>
+    <strong>Price:</strong> ₹150.00 / unit<br>
+    <strong>No fractional units.</strong> Amount mode floors to the nearest whole unit.
+  </div>
+</div>
+
+<div class="phone-frame">
+  <div class="phone-screen" id="phoneScreen">
+
+    <!-- ══════ SCREEN 1: STOCKS EXPLORE ══════ -->
+    <div class="screen active" id="screenExplore">
+
+      <!-- L0 App Bar -->
+      <div class="app-bar-l0">
+        <div class="app-bar-l0__left">
+          <img src="https://mint-design-system.vercel.app/logos/stocks/GROWW.png" class="app-bar-l0__logo" alt="Groww">
+          <span class="heading-base" style="color:var(--contentPrimary);">Stocks</span>
+        </div>
+        <div class="app-bar-l0__right">
+          <span class="mds-iconview mds-iconview--medium" style="color:var(--contentPrimary);">
+            <i class="gh-standard-search-01"></i>
+          </span>
+          <span class="mds-iconview mds-iconview--medium" style="color:var(--contentPrimary);">
+            <i class="gh-standard-qr-code"></i>
+          </span>
+          <div class="app-bar-l0__avatar">
+            <span class="mds-iconview mds-iconview--medium">
+              <i class="gh-standard-user"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="scroll-content">
+
+        <!-- Gold Widget Card -->
+        <div class="gold-card">
+          <div class="gold-card__eyebrow heading-eyebrow">Electronic Gold Receipt</div>
+          <div class="gold-card__title heading-base">Gold</div>
+          <div class="gold-card__price body-base-heavy">₹150.00 / unit (10mg)</div>
+
+          <!-- Preset chips (amount mode only) -->
+          <div class="preset-chips" id="presetChips" style="display:none;">
+            <button class="mds-pill" onclick="selectPreset(5000)" data-amount="5000">
+              <span class="mds-pill__label">₹5,000</span>
+            </button>
+            <button class="mds-pill" onclick="selectPreset(10000)" data-amount="10000">
+              <span class="mds-pill__label">₹10,000</span>
+            </button>
+            <button class="mds-pill" onclick="selectPreset(25000)" data-amount="25000">
+              <span class="mds-pill__label">₹25,000</span>
+            </button>
+            <button class="mds-pill" onclick="selectPreset(50000)" data-amount="50000">
+              <span class="mds-pill__label">₹50,000</span>
+            </button>
+          </div>
+
+          <!-- Slider -->
+          <div class="slider-section">
+            <div class="slider-label-row">
+              <span class="body-small" style="color:var(--contentSecondary);" id="sliderMinLabel">1 unit</span>
+              <span class="body-small-heavy" style="color:var(--contentPrimary);" id="sliderCurrentLabel">5 units</span>
+              <span class="body-small" style="color:var(--contentSecondary);" id="sliderMaxLabel">100 units</span>
+            </div>
+            <input type="range" id="slider" min="1" max="100" value="5" step="1" oninput="onSliderChange()">
+          </div>
+
+          <!-- Units note (amount mode only) -->
+          <div class="units-note body-small" id="unitsNote" style="display:none;">
+            You'll buy <strong id="unitsNoteCount">33</strong> units
+          </div>
+
+          <!-- Summary -->
+          <div class="summary-row">
+            <div class="summary-col">
+              <div class="summary-col__label body-small">Invested</div>
+              <div class="summary-col__value body-base-heavy" id="investedAmt">₹750.00</div>
+            </div>
+            <div class="summary-col" style="text-align:right;">
+              <div class="summary-col__label body-small" id="returnsLabel">Returns (1Y)</div>
+              <div class="summary-col__value summary-col__value--positive body-base-heavy" id="returnsAmt">+₹187.50</div>
+            </div>
+          </div>
+
+          <!-- Returns timeframe pills -->
+          <div class="returns-row">
+            <div class="pill-group-stylised" id="timeframePills">
+              <button class="mds-pill mds-pill--selected" onclick="selectTimeframe('1Y', this)">
+                <span class="mds-pill__label">1Y</span>
+              </button>
+              <button class="mds-pill" onclick="selectTimeframe('3Y', this)">
+                <span class="mds-pill__label">3Y</span>
+              </button>
+              <button class="mds-pill" onclick="selectTimeframe('5Y', this)">
+                <span class="mds-pill__label">5Y</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <button class="btn-primary-large" onclick="buyGold()">Buy Gold</button>
+        </div>
+
+        <!-- Section stub: Most Traded -->
+        <div class="section-stub">
+          <div class="section-stub__header">
+            <span class="heading-base" style="color:var(--contentPrimary);">Most Traded</span>
+            <span class="body-small-heavy" style="color:var(--contentAccent); cursor:pointer;">View All</span>
+          </div>
+
+          <div class="list-row">
+            <img src="https://mint-design-system.vercel.app/logos/stocks/RELIANCE.png" class="list-row__thumb" alt="Reliance" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="list-row__thumb-fallback" style="display:none;">RI</div>
+            <div class="list-row__middle">
+              <span class="list-row__label body-base-heavy">Reliance Industries</span>
+              <span class="list-row__sub body-small">NSE</span>
+            </div>
+            <div class="list-row__trailing">
+              <span class="list-row__trailing-value body-base-heavy">₹1,298.45</span>
+              <span class="list-row__trailing-sub list-row__trailing-sub--positive body-small-heavy">+1.24%</span>
+            </div>
+          </div>
+
+          <div class="list-row">
+            <img src="https://mint-design-system.vercel.app/logos/stocks/HDFCBANK.png" class="list-row__thumb" alt="HDFC Bank" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="list-row__thumb-fallback" style="display:none;">HD</div>
+            <div class="list-row__middle">
+              <span class="list-row__label body-base-heavy">HDFC Bank</span>
+              <span class="list-row__sub body-small">NSE</span>
+            </div>
+            <div class="list-row__trailing">
+              <span class="list-row__trailing-value body-base-heavy">₹1,742.30</span>
+              <span class="list-row__trailing-sub list-row__trailing-sub--negative body-small-heavy">-0.38%</span>
+            </div>
+          </div>
+
+          <div class="list-row">
+            <img src="https://mint-design-system.vercel.app/logos/stocks/TCS.png" class="list-row__thumb" alt="TCS" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="list-row__thumb-fallback" style="display:none;">TC</div>
+            <div class="list-row__middle">
+              <span class="list-row__label body-base-heavy">Tata Consultancy Services</span>
+              <span class="list-row__sub body-small">NSE</span>
+            </div>
+            <div class="list-row__trailing">
+              <span class="list-row__trailing-value body-base-heavy">₹3,856.10</span>
+              <span class="list-row__trailing-sub list-row__trailing-sub--positive body-small-heavy">+0.67%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Nav -->
+      <nav class="mds-bottom-nav">
+        <button class="mds-bottom-nav__tab mds-bottom-nav__tab--active" type="button">
+          <span class="mds-bottom-nav__icon"><i class="gh-standard-chart-line-data-02"></i></span>
+          <span class="mds-bottom-nav__label">Stocks</span>
+        </button>
+        <button class="mds-bottom-nav__tab" type="button">
+          <span class="mds-bottom-nav__icon"><i class="gh-standard-percent-circle"></i></span>
+          <span class="mds-bottom-nav__label">F&O</span>
+        </button>
+        <button class="mds-bottom-nav__tab" type="button">
+          <span class="mds-bottom-nav__icon"><i class="gh-standard-pie-chart-01"></i></span>
+          <span class="mds-bottom-nav__label">Mutual funds</span>
+        </button>
+        <button class="mds-bottom-nav__tab" type="button">
+          <span class="mds-bottom-nav__icon"><i class="gh-standard-money-02"></i></span>
+          <span class="mds-bottom-nav__label">Loans</span>
+        </button>
+        <button class="mds-bottom-nav__tab" type="button">
+          <span class="mds-bottom-nav__icon"><i class="gh-standard-gold-buy"></i></span>
+          <span class="mds-bottom-nav__label">Gold</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- ══════ SCREEN 2: HOLDINGS ══════ -->
+    <div class="screen" id="screenHoldings">
+
+      <!-- Standard App Bar -->
+      <div class="app-bar-std">
+        <button class="app-bar-std__nav" onclick="goBack()">
+          <span class="mds-iconview mds-iconview--medium" style="color:var(--contentPrimary);">
+            <i class="gh-standard-arrow-left-01"></i>
+          </span>
+        </button>
+        <div class="app-bar-std__title">
+          <span class="heading-base" style="color:var(--contentPrimary);">Holdings</span>
+        </div>
+      </div>
+
+      <div class="scroll-content" style="padding-bottom:100px;">
+
+        <!-- Holdings summary -->
+        <div style="padding: 16px;">
+          <div class="body-small" style="color:var(--contentSecondary); margin-bottom: 4px;">Current value</div>
+          <div class="heading-base" style="color:var(--contentPrimary); margin-bottom: 2px;" id="holdingsTotal">₹3,28,456.70</div>
+          <div class="body-small-heavy" style="color:var(--contentPositive);">+₹18,245.30 (+5.88%)</div>
+        </div>
+
+        <div style="height:1px; background:var(--borderPrimary); margin:0 16px;"></div>
+
+        <!-- Holdings list -->
+        <div class="list-row">
+          <img src="https://mint-design-system.vercel.app/logos/stocks/RELIANCE.png" class="list-row__thumb" alt="Reliance" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="list-row__thumb-fallback" style="display:none;">RI</div>
+          <div class="list-row__middle">
+            <span class="list-row__label body-base-heavy">Reliance Industries</span>
+            <span class="list-row__sub body-small">10 shares · Avg. ₹1,245.00</span>
+          </div>
+          <div class="list-row__trailing">
+            <span class="list-row__trailing-value body-base-heavy">₹12,984.50</span>
+            <span class="list-row__trailing-sub list-row__trailing-sub--positive body-small-heavy">+₹534.50 (+4.29%)</span>
+          </div>
+        </div>
+
+        <div class="list-row">
+          <img src="https://mint-design-system.vercel.app/logos/stocks/INFY.png" class="list-row__thumb" alt="Infosys" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="list-row__thumb-fallback" style="display:none;">IN</div>
+          <div class="list-row__middle">
+            <span class="list-row__label body-base-heavy">Infosys</span>
+            <span class="list-row__sub body-small">25 shares · Avg. ₹1,480.00</span>
+          </div>
+          <div class="list-row__trailing">
+            <span class="list-row__trailing-value body-base-heavy">₹38,625.00</span>
+            <span class="list-row__trailing-sub list-row__trailing-sub--positive body-small-heavy">+₹1,625.00 (+4.39%)</span>
+          </div>
+        </div>
+
+        <div class="list-row">
+          <img src="https://mint-design-system.vercel.app/logos/stocks/TATASTEEL.png" class="list-row__thumb" alt="Tata Steel" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="list-row__thumb-fallback" style="display:none;">TA</div>
+          <div class="list-row__middle">
+            <span class="list-row__label body-base-heavy">Tata Steel</span>
+            <span class="list-row__sub body-small">50 shares · Avg. ₹142.00</span>
+          </div>
+          <div class="list-row__trailing">
+            <span class="list-row__trailing-value body-base-heavy">₹7,350.00</span>
+            <span class="list-row__trailing-sub list-row__trailing-sub--positive body-small-heavy">+₹250.00 (+3.52%)</span>
+          </div>
+        </div>
+
+        <!-- EGR Gold holding (dynamically populated) -->
+        <div class="list-row" id="egrHoldingRow">
+          <div class="list-row__thumb-fallback" style="display:flex;">AU</div>
+          <div class="list-row__middle">
+            <span class="list-row__label body-base-heavy">Electronic Gold Receipt</span>
+            <span class="list-row__sub body-small" id="egrHoldingSub">5 units · Avg. ₹150.00</span>
+          </div>
+          <div class="list-row__trailing">
+            <span class="list-row__trailing-value body-base-heavy" id="egrHoldingValue">₹750.00</span>
+            <span class="list-row__trailing-sub body-small" style="color:var(--contentSecondary);">0.00%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Nav for holdings (no active) -->
+      <nav class="mds-bottom-nav" id="holdingsBottomNav">
+        <button class="mds-bottom-nav__tab" type="button" onclick="goBack()">
+          <span class="mds-bottom-nav__icon"><i class="gh-standard-chart-line-data-02"></i></span>
+          <span class="mds-bottom-nav__label">Stocks</span>
+        </button>
+        <button class="mds-bottom-nav__tab" type="button">
+          <span class="mds-bottom-nav__icon"><i class="gh-standard-percent-circle"></i></span>
+          <span class="mds-bottom-nav__label">F&O</span>
+        </button>
+        <button class="mds-bottom-nav__tab" type="button">
+          <span class="mds-bottom-nav__icon"><i class="gh-standard-pie-chart-01"></i></span>
+          <span class="mds-bottom-nav__label">Mutual funds</span>
+        </button>
+        <button class="mds-bottom-nav__tab" type="button">
+          <span class="mds-bottom-nav__icon"><i class="gh-standard-money-02"></i></span>
+          <span class="mds-bottom-nav__label">Loans</span>
+        </button>
+        <button class="mds-bottom-nav__tab" type="button">
+          <span class="mds-bottom-nav__icon"><i class="gh-standard-gold-buy"></i></span>
+          <span class="mds-bottom-nav__label">Gold</span>
+        </button>
+      </nav>
+
+      <!-- Snackbar -->
+      <div class="snackbar" id="snackbar">
+        <span class="snackbar__text body-base-heavy" id="snackbarText">Buy order placed for 5 units of EGR Gold</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const PRICE_PER_UNIT = 150;
+const RETURNS = { '1Y': { rate: 0.25, years: 1 }, '3Y': { rate: 0.18, years: 3 }, '5Y': { rate: 0.14, years: 5 } };
+
+let currentMode = 'units';
+let currentTimeframe = '1Y';
+let currentUnits = 5;
+
+function formatIndian(num) {
+  const fixed = num.toFixed(2);
+  const [intPart, decPart] = fixed.split('.');
+  const isNeg = intPart.startsWith('-');
+  let digits = isNeg ? intPart.slice(1) : intPart;
+  if (digits.length > 3) {
+    const last3 = digits.slice(-3);
+    const rest = digits.slice(0, -3);
+    const formatted = rest.replace(/\B(?=(\d{2})+(?!\d))/g, ',');
+    digits = formatted + ',' + last3;
+  }
+  return (isNeg ? '-' : '') + digits + '.' + decPart;
+}
+
+function calcReturns(invested, tf) {
+  const { rate, years } = RETURNS[tf];
+  return invested * (Math.pow(1 + rate, years) - 1);
+}
+
+function updateUI() {
+  const slider = document.getElementById('slider');
+  const val = parseInt(slider.value);
+
+  let units, invested;
+
+  if (currentMode === 'units') {
+    units = val;
+    invested = units * PRICE_PER_UNIT;
+    document.getElementById('sliderCurrentLabel').textContent = units + ' unit' + (units !== 1 ? 's' : '');
+  } else {
+    const rawAmount = val;
+    units = Math.floor(rawAmount / PRICE_PER_UNIT);
+    if (units < 1) units = 1;
+    invested = units * PRICE_PER_UNIT;
+    document.getElementById('sliderCurrentLabel').textContent = '₹' + formatIndian(rawAmount);
+    document.getElementById('unitsNoteCount').textContent = units;
+  }
+
+  currentUnits = units;
+
+  document.getElementById('investedAmt').textContent = '₹' + formatIndian(invested);
+
+  const ret = calcReturns(invested, currentTimeframe);
+  const { years } = RETURNS[currentTimeframe];
+  document.getElementById('returnsAmt').textContent = '+₹' + formatIndian(ret);
+  document.getElementById('returnsLabel').textContent = 'Returns (' + currentTimeframe + ')';
+
+  updatePresetSelection();
+}
+
+function onSliderChange() {
+  updateUI();
+}
+
+function switchMode(mode) {
+  currentMode = mode;
+  const slider = document.getElementById('slider');
+  const presetChips = document.getElementById('presetChips');
+  const unitsNote = document.getElementById('unitsNote');
+
+  if (mode === 'units') {
+    slider.min = 1;
+    slider.max = 100;
+    slider.step = 1;
+    slider.value = 5;
+    document.getElementById('sliderMinLabel').textContent = '1 unit';
+    document.getElementById('sliderMaxLabel').textContent = '100 units';
+    presetChips.style.display = 'none';
+    unitsNote.style.display = 'none';
+  } else {
+    slider.min = 150;
+    slider.max = 100000;
+    slider.step = 150;
+    slider.value = 5100;
+    document.getElementById('sliderMinLabel').textContent = '₹150';
+    document.getElementById('sliderMaxLabel').textContent = '₹1,00,000';
+    presetChips.style.display = 'flex';
+    unitsNote.style.display = 'block';
+  }
+
+  updateUI();
+}
+
+function selectPreset(amount) {
+  const slider = document.getElementById('slider');
+  const snappedAmount = Math.floor(amount / PRICE_PER_UNIT) * PRICE_PER_UNIT;
+  slider.value = snappedAmount;
+  updateUI();
+}
+
+function updatePresetSelection() {
+  if (currentMode !== 'amount') return;
+  const slider = document.getElementById('slider');
+  const val = parseInt(slider.value);
+  const chips = document.querySelectorAll('#presetChips .mds-pill');
+  chips.forEach(chip => {
+    const amt = parseInt(chip.dataset.amount);
+    const snapped = Math.floor(amt / PRICE_PER_UNIT) * PRICE_PER_UNIT;
+    if (val === snapped) {
+      chip.classList.add('mds-pill--selected');
+    } else {
+      chip.classList.remove('mds-pill--selected');
+    }
+  });
+}
+
+function selectTimeframe(tf, btn) {
+  currentTimeframe = tf;
+  const pills = document.querySelectorAll('#timeframePills .mds-pill');
+  pills.forEach(p => p.classList.remove('mds-pill--selected'));
+  btn.classList.add('mds-pill--selected');
+  updateUI();
+}
+
+function buyGold() {
+  const invested = currentUnits * PRICE_PER_UNIT;
+
+  document.getElementById('egrHoldingSub').textContent = currentUnits + ' unit' + (currentUnits !== 1 ? 's' : '') + ' · Avg. ₹150.00';
+  document.getElementById('egrHoldingValue').textContent = '₹' + formatIndian(invested);
+
+  document.getElementById('snackbarText').textContent = 'Buy order placed for ' + currentUnits + ' unit' + (currentUnits !== 1 ? 's' : '') + ' of EGR Gold';
+
+  document.getElementById('screenExplore').classList.remove('active');
+  document.getElementById('screenHoldings').classList.add('active');
+
+  setTimeout(function() {
+    document.getElementById('snackbar').classList.add('visible');
+  }, 300);
+
+  setTimeout(function() {
+    document.getElementById('snackbar').classList.remove('visible');
+  }, 3300);
+}
+
+function goBack() {
+  document.getElementById('screenHoldings').classList.remove('active');
+  document.getElementById('screenExplore').classList.add('active');
+}
+
+updateUI();
+</script>

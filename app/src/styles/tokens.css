@@ -1,0 +1,47 @@
+:root {
+  --backgroundPrimary: #060809;
+  --backgroundSurfaceZ1: #141B1E;
+  --backgroundSurfaceZ2: #1E2428;
+  --backgroundSecondary: #141B1E;
+  --backgroundTertiary: #252A2C;
+  --backgroundAccent: #04B488;
+  --backgroundNegative: #ED5533;
+  --backgroundPositive: #04B488;
+  --backgroundWarning: #E7A71E;
+  --backgroundAccentSubtle: #0D2B22;
+  --backgroundNegativeSubtle: #2D1A15;
+  --backgroundPositiveSubtle: #0D2B22;
+  --backgroundWarningSubtle: #2D2610;
+  --backgroundDisabled: #1A1D1F;
+  --backgroundTransparent: transparent;
+  --backgroundInversePrimary: #EAEFF1;
+  --backgroundSurfaceDocked: #0E1114;
+  --backgroundAccentSecondary: #5669FF;
+  --borderPrimary: #252A2C;
+  --borderAccent: #04B488;
+  --borderNegative: #ED5533;
+  --borderDisabled: #1E2428;
+  --borderNeutral: #EAEFF1;
+  --contentPrimary: #EAEFF1;
+  --contentSecondary: #989EA0;
+  --contentTertiary: #898C8E;
+  --contentDisabled: #555859;
+  --contentAccent: #04B488;
+  --contentPositive: #04B488;
+  --contentNegative: #ED5533;
+  --contentWarning: #E7A71E;
+  --contentOnColour: #FFFFFF;
+  --contentOnAccentSubtle: #04B488;
+  --contentOnPositiveSubtle: #04B488;
+  --contentOnNegativeSubtle: #ED5533;
+  --contentOnWarningSubtle: #E7A71E;
+  --contentAccentSecondary: #5669FF;
+  --contentInversePrimary: #060809;
+  --contentInverseSecondary: #252A2C;
+
+  --page-bg: #0a0c0e;
+  --panel-bg: #141B1E;
+  --panel-border: #252A2C;
+  --panel-text: #EAEFF1;
+  --panel-text-secondary: #989EA0;
+}

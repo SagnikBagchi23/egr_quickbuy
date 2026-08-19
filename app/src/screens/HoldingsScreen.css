@@ -1,0 +1,235 @@
+.holdings-content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Filter pills */
+.holdings-pills {
+  display: flex;
+  gap: 4px;
+  padding: 20px 16px 12px;
+}
+
+.holdings-pill {
+  font-family: 'Sohne', sans-serif;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 99px;
+  color: var(--contentSecondary);
+  cursor: pointer;
+}
+
+.holdings-pill--active {
+  background: var(--backgroundTertiary);
+  color: var(--contentPrimary);
+}
+
+/* Summary card */
+.holdings-summary {
+  margin: 0 16px 20px;
+  background: var(--backgroundSurfaceZ1);
+  border: 1px solid var(--borderPrimary);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.holdings-summary__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 16px 16px;
+}
+
+.holdings-summary__info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.holdings-summary__label {
+  font-family: 'Sohne', sans-serif;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--contentSecondary);
+}
+
+.holdings-summary__value {
+  font-family: 'Sohne', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 32px;
+  color: var(--contentPrimary);
+}
+
+.holdings-summary__eye {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.holdings-summary__divider {
+  height: 1px;
+  background: var(--borderPrimary);
+  margin: 0 16px;
+}
+
+.holdings-summary__stats {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+}
+
+.holdings-summary__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.holdings-summary__stat-label {
+  font-family: 'GrowwSans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--contentSecondary);
+}
+
+.holdings-summary__stat-value {
+  font-family: 'GrowwSans', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--contentPrimary);
+  text-align: right;
+}
+
+.holdings-summary__stat-value--pos {
+  color: var(--contentPositive);
+}
+
+.holdings-summary__stat-value--neg {
+  color: var(--contentNegative);
+}
+
+/* Sort row */
+.holdings-sort-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  height: 24px;
+  margin-bottom: 0;
+}
+
+.holdings-sort-row__left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'GrowwSans', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--contentSecondary);
+}
+
+/* Stock list */
+.holdings-list {
+  padding: 0;
+}
+
+.holdings-item {
+  position: relative;
+}
+
+.holdings-item__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 16px 16px 16px;
+}
+
+.holdings-item__left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.holdings-item__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.holdings-item__name {
+  font-family: 'GrowwSans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--contentPrimary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.holdings-item__shares {
+  font-family: 'GrowwSans', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--contentSecondary);
+}
+
+.holdings-item__right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  flex-shrink: 0;
+  width: 96px;
+}
+
+.holdings-item__price {
+  font-family: 'GrowwSans', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--contentPrimary);
+}
+
+.holdings-item__change {
+  font-family: 'GrowwSans', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--contentSecondary);
+}
+
+.holdings-item__change--pos {
+  font-weight: 500;
+  color: var(--contentPositive);
+}
+
+.holdings-item__change--neg {
+  font-weight: 500;
+  color: var(--contentNegative);
+}
+
+.holdings-item__divider {
+  height: 1px;
+  background: var(--borderPrimary);
+  margin-left: 16px;
+}

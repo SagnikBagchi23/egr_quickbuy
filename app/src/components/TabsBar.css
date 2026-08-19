@@ -1,0 +1,47 @@
+.tabs-bar {
+  display: flex;
+  align-items: center;
+  background: var(--backgroundPrimary);
+  border-bottom: 1px solid var(--borderPrimary);
+  height: 48px;
+  flex-shrink: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 0;
+}
+.tabs-bar::-webkit-scrollbar { display: none; }
+
+.tabs-bar__tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 0 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  white-space: nowrap;
+  font-family: 'Sohne', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--contentSecondary);
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.tabs-bar__tab--active {
+  color: var(--contentPrimary);
+}
+
+.tabs-bar__tab--active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--borderNeutral);
+  border-radius: 4px 4px 0 0;
+}

@@ -1,0 +1,42 @@
+@import './styles/tokens.css';
+
+@font-face {
+  font-family: 'Sohne';
+  src: url('/Sohne-Kraftig.otf') format('opentype');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GrowwSans';
+  src: url('/GrowwSans-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GrowwSans';
+  src: url('/GrowwSans-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-display: swap;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'GrowwSans', -apple-system, sans-serif;
+  font-weight: 400;
+  background: var(--page-bg);
+  color: var(--contentPrimary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+}
+
+#root {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 32px 16px;
+  gap: 32px;
+  flex-wrap: wrap;
+}
