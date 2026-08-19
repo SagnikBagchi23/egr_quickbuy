@@ -73,6 +73,7 @@ export function GoldWidget({ iteration, onBuy }: Props) {
   const sliderPercent = ((sliderValue - sliderMin) / (sliderMax - sliderMin)) * 100;
 
   // Needle slider drag state (iteration 6)
+  const needleRef = useRef<HTMLDivElement>(null);
   const dragRef = useRef<{ startX: number; startValue: number } | null>(null);
 
   const handleNeedleDown = useCallback((e: React.PointerEvent) => {
@@ -83,7 +84,7 @@ export function GoldWidget({ iteration, onBuy }: Props) {
   const handleNeedleMove = useCallback((e: React.PointerEvent) => {
     if (!dragRef.current) return;
     const dx = e.clientX - dragRef.current.startX;
-    const dUnits = Math.round(dx);
+    const dUnits = Math.round(-dx / 8);
     setSliderValue(Math.max(1, Math.min(1000, dragRef.current.startValue + dUnits)));
   }, []);
 
@@ -144,15 +145,21 @@ export function GoldWidget({ iteration, onBuy }: Props) {
                 </button>
                 <div
                   className="needle-slider"
+                  ref={needleRef}
                   onPointerDown={handleNeedleDown}
                   onPointerMove={handleNeedleMove}
                   onPointerUp={handleNeedleUp}
                   onPointerCancel={handleNeedleUp}
                 >
-                  <div
-                    className="needle-slider__bars"
-                    style={{ backgroundPositionX: `${-(sliderValue * 2)}px` }}
-                  />
+                  <div className="needle-slider__bars-mask">
+                    <div
+                      className="needle-slider__bars"
+                      style={{
+                        width: 1000 * 8,
+                        left: `calc(50% - ${(sliderValue - 1) * 8}px)`,
+                      }}
+                    />
+                  </div>
                   <div className="needle-slider__pointer" />
                 </div>
                 <button
