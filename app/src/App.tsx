@@ -110,7 +110,7 @@ function App() {
         {/* Snackbar overlay */}
         <Snackbar
           title="Gold bought successfully!"
-          subtitle={`${boughtUnits} share${boughtUnits !== 1 ? 's' : ''} • GOLD10MG999`}
+          subtitle={`${boughtUnits} qty • GOLD10MG999`}
           visible={snackbarVisible}
           onHide={handleSnackbarHide}
         />

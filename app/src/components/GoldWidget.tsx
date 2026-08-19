@@ -29,7 +29,9 @@ export function GoldWidget({ iteration, onBuy }: Props) {
   }, []);
 
   useEffect(() => {
-    if (mode === 'units') {
+    if (iteration === 6) {
+      setSliderValue(10);
+    } else if (mode === 'units') {
       const min = Math.ceil(1000 / price);
       const max = Math.floor(100000 / price);
       setSliderValue(Math.max(min, Math.min(Math.round(10000 / price), max)));
@@ -81,11 +83,9 @@ export function GoldWidget({ iteration, onBuy }: Props) {
   const handleNeedleMove = useCallback((e: React.PointerEvent) => {
     if (!dragRef.current) return;
     const dx = e.clientX - dragRef.current.startX;
-    const dUnits = Math.round(dx / 1.5);
-    const min = Math.ceil(1000 / price);
-    const max = Math.floor(100000 / price);
-    setSliderValue(Math.max(min, Math.min(max, dragRef.current.startValue + dUnits)));
-  }, [price]);
+    const dUnits = Math.round(dx);
+    setSliderValue(Math.max(1, Math.min(1000, dragRef.current.startValue + dUnits)));
+  }, []);
 
   const handleNeedleUp = useCallback(() => {
     dragRef.current = null;
@@ -136,7 +136,7 @@ export function GoldWidget({ iteration, onBuy }: Props) {
               <div className="needle-section__slider-row">
                 <button
                   className="needle-btn"
-                  onClick={() => setSliderValue(Math.max(minUnits, sliderValue - 1))}
+                  onClick={() => setSliderValue(Math.max(1, sliderValue - 1))}
                 >
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                     <line x1="4" y1="8" x2="12" y2="8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -151,13 +151,13 @@ export function GoldWidget({ iteration, onBuy }: Props) {
                 >
                   <div
                     className="needle-slider__bars"
-                    style={{ backgroundPositionX: `${((sliderValue - minUnits) * 2) % 8}px` }}
+                    style={{ backgroundPositionX: `${-(sliderValue * 2)}px` }}
                   />
                   <div className="needle-slider__pointer" />
                 </div>
                 <button
                   className="needle-btn"
-                  onClick={() => setSliderValue(Math.min(maxUnits, sliderValue + 1))}
+                  onClick={() => setSliderValue(Math.min(1000, sliderValue + 1))}
                 >
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                     <line x1="4" y1="8" x2="12" y2="8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -167,18 +167,11 @@ export function GoldWidget({ iteration, onBuy }: Props) {
               </div>
             </div>
             <div className="needle-section__footer">
-              <div className="gold-price-row">
-                <div className="gold-price-row__left">
-                  <span className="gold-price-row__text">Gold price</span>
-                  <span className="gold-price-row__dot" />
-                </div>
-                <span className="gold-price-row__right">
-                  <span className="gold-price-row__amount">₹{formatIndian(price)}</span>
-                  <span className="gold-price-row__unit">/10mg</span>
-                </span>
-              </div>
+              <p className="needle-section__helper">
+                Price of 10mg gold is ₹{formatIndian(price)}
+              </p>
               <button
-                className={`btn-primary btn-primary--md ${pressing ? 'btn-primary--pressed' : ''}`}
+                className={`btn-primary btn-primary--md btn-primary--gold ${pressing ? 'btn-primary--pressed' : ''}`}
                 onClick={handleBuyClick}
               >
                 <svg className="btn-primary__icon" width="16" height="16" viewBox="0 0 16 16" fill="none">

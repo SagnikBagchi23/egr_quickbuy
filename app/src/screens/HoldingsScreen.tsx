@@ -52,7 +52,7 @@ export function HoldingsContent({ boughtUnits, buyPrice }: Props) {
       if (boughtUnits <= 0) return null;
       return {
         name: 'Gold 10mg',
-        sharesLabel: `${boughtUnits} share${boughtUnits !== 1 ? 's' : ''}`,
+        sharesLabel: `${boughtUnits} qty`,
         price: formatRupeeWhole(goldCurrentValue),
         changeText: `${goldDayChange >= 0 ? '+' : ''}${formatIndian(goldDayChange)} (${Math.abs(goldDayPct).toFixed(2)}%)`,
         positive: goldDayChange >= 0,
@@ -60,7 +60,7 @@ export function HoldingsContent({ boughtUnits, buyPrice }: Props) {
     }
     return {
       name: s.name,
-      sharesLabel: `${s.shares} shares`,
+      sharesLabel: `${s.shares} qty`,
       price: `₹${formatIndian(s.price)}`,
       changeText: s.change !== 0
         ? `${s.positive ? '+' : '-'}${formatIndian(Math.abs(s.change))} (${s.pct.toFixed(2)}%)`
@@ -123,12 +123,18 @@ export function HoldingsContent({ boughtUnits, buyPrice }: Props) {
 
       {/* Sort row */}
       <div className="holdings-sort-row">
-        <div className="holdings-sort-row__left">
+        <button className="holdings-sort-row__icon-btn">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
             <path d="M3 6H17M5 10H15M7 14H13" stroke="var(--contentSecondary)" strokeWidth="1.5" strokeLinecap="round"/>
           </svg>
-          <span>Market price (LTP)</span>
-        </div>
+        </button>
+        <button className="holdings-sort-row__tertiary-btn">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M5.5 10L8 12.5L10.5 10" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M5.5 6L8 3.5L10.5 6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+          <span>Market price (10%)</span>
+        </button>
       </div>
 
       {/* Stock list */}

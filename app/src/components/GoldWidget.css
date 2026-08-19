@@ -445,26 +445,20 @@
     transparent 1px,
     transparent 8px
   );
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    rgba(0, 0, 0, 0.2) 10%,
-    rgba(0, 0, 0, 0.5) 25%,
-    black 45%,
-    black 55%,
-    rgba(0, 0, 0, 0.5) 75%,
-    rgba(0, 0, 0, 0.2) 90%,
+  -webkit-mask-image: radial-gradient(
+    ellipse closest-side at center,
+    white 0%,
+    rgba(255, 255, 255, 0.75) 25%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0.25) 75%,
     transparent 100%
   );
-  mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    rgba(0, 0, 0, 0.2) 10%,
-    rgba(0, 0, 0, 0.5) 25%,
-    black 45%,
-    black 55%,
-    rgba(0, 0, 0, 0.5) 75%,
-    rgba(0, 0, 0, 0.2) 90%,
+  mask-image: radial-gradient(
+    ellipse closest-side at center,
+    white 0%,
+    rgba(255, 255, 255, 0.75) 25%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0.25) 75%,
     transparent 100%
   );
 }
@@ -531,6 +525,25 @@
   font-size: 12px;
   line-height: 18px;
   color: var(--contentSecondary);
+}
+
+.needle-section__helper {
+  font-family: 'GrowwSans', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--contentPrimary);
+  text-align: center;
+  margin: 0;
+}
+
+.btn-primary--gold {
+  background: linear-gradient(90deg, #c99a2e, #e8b830);
+  color: #151819;
+}
+
+.btn-primary--gold:active {
+  background: linear-gradient(90deg, #a67d1e, #c99a2e);
 }
 
 .btn-primary__icon {
