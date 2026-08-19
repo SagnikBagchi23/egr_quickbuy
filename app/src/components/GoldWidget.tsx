@@ -3,7 +3,7 @@ import { formatRupeeWhole, formatIndian, formatIndianWhole, getGoldPrice, calcRe
 import './GoldWidget.css';
 
 interface Props {
-  iteration: 1 | 2 | 3 | 4 | 5 | 6;
+  iteration: 1 | 2 | 3 | 4 | 5 | 6 | 7;
   onBuy: (units: number) => void;
 }
 
@@ -13,6 +13,7 @@ export function GoldWidget({ iteration, onBuy }: Props) {
   const [price, setPrice] = useState(getGoldPrice);
   const [timeframe, setTimeframe] = useState<Timeframe>('1Y');
   const [pressing, setPressing] = useState(false);
+  const [unitSize, setUnitSize] = useState<'10mg' | '1g'>('10mg');
   const mode = iteration === 2 ? 'amount' : 'units';
 
   const minUnits = Math.ceil(1000 / price);
@@ -29,7 +30,10 @@ export function GoldWidget({ iteration, onBuy }: Props) {
   }, []);
 
   useEffect(() => {
-    if (iteration === 6) {
+    if (iteration === 7) {
+      setSliderValue(5000);
+      setUnitSize('10mg');
+    } else if (iteration === 6) {
       setSliderValue(10);
     } else if (mode === 'units') {
       const min = Math.ceil(1000 / price);
@@ -113,7 +117,7 @@ export function GoldWidget({ iteration, onBuy }: Props) {
     <div className="gold-section">
       <div className="gold-section__header">
         <div className="gold-section__titles">
-          {iteration !== 6 && (
+          {iteration !== 6 && iteration !== 7 && (
             <div className="gold-section__live-tag">
               <div className="gold-section__live-dot" />
               <span className="gold-section__live-label">LIVE</span>
@@ -126,8 +130,65 @@ export function GoldWidget({ iteration, onBuy }: Props) {
         </div>
       </div>
 
-      <div className="gold-card" style={iteration === 6 ? { gap: 32 } : undefined}>
-        {iteration === 6 ? (
+      <div className="gold-card" style={iteration === 6 || iteration === 7 ? { gap: 32 } : undefined}>
+        {iteration === 7 ? (
+          <>
+            <div className="gold7-section">
+              <div className="gold7-toggle">
+                <button
+                  className={`gold7-toggle__pill ${unitSize === '10mg' ? 'gold7-toggle__pill--active' : ''}`}
+                  onClick={() => {
+                    setUnitSize('10mg');
+                    setSliderValue(Math.min(sliderValue, 10000));
+                  }}
+                >
+                  10MG
+                </button>
+                <button
+                  className={`gold7-toggle__pill ${unitSize === '1g' ? 'gold7-toggle__pill--active' : ''}`}
+                  onClick={() => {
+                    setUnitSize('1g');
+                    setSliderValue(Math.min(sliderValue, 100));
+                  }}
+                >
+                  1G
+                </button>
+              </div>
+              <div className="gold7-qty">
+                <span className="gold7-qty__label">QTY</span>
+                <span className="gold7-qty__value">{formatIndianWhole(sliderValue)}</span>
+              </div>
+              <div className="gold7-slider-wrap">
+                <input
+                  type="range"
+                  className="gold7-slider"
+                  min={1}
+                  max={unitSize === '10mg' ? 10000 : 100}
+                  step={1}
+                  value={sliderValue}
+                  onChange={(e) => setSliderValue(parseInt(e.target.value))}
+                  style={{
+                    background: `linear-gradient(to right, var(--goldButtonStop1, #edb537) 0%, var(--goldButtonStop1, #edb537) ${((sliderValue - 1) / ((unitSize === '10mg' ? 10000 : 100) - 1)) * 100}%, var(--backgroundTertiary) ${((sliderValue - 1) / ((unitSize === '10mg' ? 10000 : 100) - 1)) * 100}%, var(--backgroundTertiary) 100%)`,
+                  }}
+                />
+              </div>
+            </div>
+            <div className="needle-section__footer">
+              <p className="needle-section__helper">
+                Price of {unitSize === '10mg' ? '10mg' : '1g'} gold is ₹{formatIndian(unitSize === '10mg' ? price : price * 100)}
+              </p>
+              <button
+                className={`btn-primary btn-primary--md btn-primary--gold ${pressing ? 'btn-primary--pressed' : ''}`}
+                onClick={handleBuyClick}
+              >
+                <svg className="btn-primary__icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M9 2L4 9h4l-1 5 5-7H8l1-5z" fill="currentColor" />
+                </svg>
+                Quick buy
+              </button>
+            </div>
+          </>
+        ) : iteration === 6 ? (
           <>
             <div className="needle-section">
               <div className="needle-section__header">

@@ -19,7 +19,7 @@ const INDICES = [
 ];
 
 function App() {
-  const [iteration, setIteration] = useState<1 | 2 | 3 | 4 | 5 | 6>(1);
+  const [iteration, setIteration] = useState<1 | 2 | 3 | 4 | 5 | 6 | 7>(1);
   const [activeTab, setActiveTab] = useState<Tab>('Explore');
   const [boughtUnits, setBoughtUnits] = useState(0);
   const [buyPrice, setBuyPrice] = useState(0);
