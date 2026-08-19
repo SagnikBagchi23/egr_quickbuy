@@ -12,6 +12,19 @@ export function formatIndian(num: number): string {
   return (isNeg ? '-' : '') + digits + '.' + decPart;
 }
 
+export function formatIndianWhole(num: number): string {
+  const rounded = Math.round(num);
+  const isNeg = rounded < 0;
+  let digits = Math.abs(rounded).toString();
+  if (digits.length > 3) {
+    const last3 = digits.slice(-3);
+    const rest = digits.slice(0, -3);
+    const formatted = rest.replace(/\B(?=(\d{2})+(?!\d))/g, ',');
+    digits = formatted + ',' + last3;
+  }
+  return (isNeg ? '-' : '') + digits;
+}
+
 export function formatRupee(num: number): string {
   return '₹' + formatIndian(num);
 }

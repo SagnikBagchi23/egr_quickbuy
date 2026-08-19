@@ -1,9 +1,9 @@
-import { useState, useCallback, useEffect, useMemo } from 'react';
-import { formatRupeeWhole, formatIndian, getGoldPrice, calcReturns, type Timeframe } from '../utils/format';
+import { useState, useCallback, useEffect, useMemo, useRef } from 'react';
+import { formatRupeeWhole, formatIndian, formatIndianWhole, getGoldPrice, calcReturns, type Timeframe } from '../utils/format';
 import './GoldWidget.css';
 
 interface Props {
-  iteration: 1 | 2 | 3 | 4 | 5;
+  iteration: 1 | 2 | 3 | 4 | 5 | 6;
   onBuy: (units: number) => void;
 }
 
@@ -70,6 +70,27 @@ export function GoldWidget({ iteration, onBuy }: Props) {
   const sliderStep = mode === 'units' ? 1 : Math.round(price * 100) / 100;
   const sliderPercent = ((sliderValue - sliderMin) / (sliderMax - sliderMin)) * 100;
 
+  // Needle slider drag state (iteration 6)
+  const dragRef = useRef<{ startX: number; startValue: number } | null>(null);
+
+  const handleNeedleDown = useCallback((e: React.PointerEvent) => {
+    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+    dragRef.current = { startX: e.clientX, startValue: sliderValue };
+  }, [sliderValue]);
+
+  const handleNeedleMove = useCallback((e: React.PointerEvent) => {
+    if (!dragRef.current) return;
+    const dx = e.clientX - dragRef.current.startX;
+    const dUnits = Math.round(dx / 1.5);
+    const min = Math.ceil(1000 / price);
+    const max = Math.floor(100000 / price);
+    setSliderValue(Math.max(min, Math.min(max, dragRef.current.startValue + dUnits)));
+  }, [price]);
+
+  const handleNeedleUp = useCallback(() => {
+    dragRef.current = null;
+  }, []);
+
   const useLargeBtn = iteration === 3 || iteration === 4 || iteration === 5;
   const useMediumBtn = iteration === 2;
 
@@ -91,10 +112,12 @@ export function GoldWidget({ iteration, onBuy }: Props) {
     <div className="gold-section">
       <div className="gold-section__header">
         <div className="gold-section__titles">
-          <div className="gold-section__live-tag">
-            <div className="gold-section__live-dot" />
-            <span className="gold-section__live-label">LIVE</span>
-          </div>
+          {iteration !== 6 && (
+            <div className="gold-section__live-tag">
+              <div className="gold-section__live-dot" />
+              <span className="gold-section__live-label">LIVE</span>
+            </div>
+          )}
           <div className="gold-section__title">Start saving in 24K Gold</div>
           {iteration === 4 && (
             <div className="gold-section__subtitle">₹{formatIndian(price)} / 10mg</div>
@@ -102,7 +125,71 @@ export function GoldWidget({ iteration, onBuy }: Props) {
         </div>
       </div>
 
-      <div className="gold-card">
+      <div className="gold-card" style={iteration === 6 ? { gap: 32 } : undefined}>
+        {iteration === 6 ? (
+          <>
+            <div className="needle-section">
+              <div className="needle-section__header">
+                <span className="needle-section__label">QTY</span>
+                <span className="needle-section__value">{formatIndianWhole(units)}</span>
+              </div>
+              <div className="needle-section__slider-row">
+                <button
+                  className="needle-btn"
+                  onClick={() => setSliderValue(Math.max(minUnits, sliderValue - 1))}
+                >
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <line x1="4" y1="8" x2="12" y2="8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                  </svg>
+                </button>
+                <div
+                  className="needle-slider"
+                  onPointerDown={handleNeedleDown}
+                  onPointerMove={handleNeedleMove}
+                  onPointerUp={handleNeedleUp}
+                  onPointerCancel={handleNeedleUp}
+                >
+                  <div
+                    className="needle-slider__bars"
+                    style={{ backgroundPositionX: `${((sliderValue - minUnits) * 2) % 8}px` }}
+                  />
+                  <div className="needle-slider__pointer" />
+                </div>
+                <button
+                  className="needle-btn"
+                  onClick={() => setSliderValue(Math.min(maxUnits, sliderValue + 1))}
+                >
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <line x1="4" y1="8" x2="12" y2="8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                    <line x1="8" y1="4" x2="8" y2="12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div className="needle-section__footer">
+              <div className="gold-price-row">
+                <div className="gold-price-row__left">
+                  <span className="gold-price-row__text">Gold price</span>
+                  <span className="gold-price-row__dot" />
+                </div>
+                <span className="gold-price-row__right">
+                  <span className="gold-price-row__amount">₹{formatIndian(price)}</span>
+                  <span className="gold-price-row__unit">/10mg</span>
+                </span>
+              </div>
+              <button
+                className={`btn-primary btn-primary--md ${pressing ? 'btn-primary--pressed' : ''}`}
+                onClick={handleBuyClick}
+              >
+                <svg className="btn-primary__icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M9 2L4 9h4l-1 5 5-7H8l1-5z" fill="currentColor" />
+                </svg>
+                Quick buy
+              </button>
+            </div>
+          </>
+        ) : (
+          <>
         {(iteration === 4 || iteration === 5) && timeframePills}
 
         <div className="gold-card__top">
@@ -201,6 +288,8 @@ export function GoldWidget({ iteration, onBuy }: Props) {
             </div>
           )}
         </div>
+          </>
+        )}
       </div>
     </div>
   );

@@ -366,3 +366,174 @@
   width: 100%;
   margin-top: 4px;
 }
+
+/* Needle slider (iteration 6) */
+.needle-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+}
+
+.needle-section__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.needle-section__label {
+  font-family: 'Sohne', sans-serif;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 16px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--contentTertiary);
+  text-align: center;
+}
+
+.needle-section__value {
+  font-family: 'Sohne', sans-serif;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 40px;
+  color: var(--contentPrimary);
+  text-align: center;
+}
+
+.needle-section__slider-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 8px;
+}
+
+.needle-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--borderPrimary);
+  background: transparent;
+  color: var(--contentSecondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.needle-slider {
+  position: relative;
+  flex: 1;
+  height: 40px;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: none;
+  margin: 0 8px;
+}
+
+.needle-slider__bars {
+  width: 100%;
+  height: 100%;
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--contentTertiary) 0px,
+    var(--contentTertiary) 1px,
+    transparent 1px,
+    transparent 8px
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 0.2) 10%,
+    rgba(0, 0, 0, 0.5) 25%,
+    black 45%,
+    black 55%,
+    rgba(0, 0, 0, 0.5) 75%,
+    rgba(0, 0, 0, 0.2) 90%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 0.2) 10%,
+    rgba(0, 0, 0, 0.5) 25%,
+    black 45%,
+    black 55%,
+    rgba(0, 0, 0, 0.5) 75%,
+    rgba(0, 0, 0, 0.2) 90%,
+    transparent 100%
+  );
+}
+
+.needle-slider__pointer {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 40px;
+  border-radius: 3px;
+  background: linear-gradient(to bottom, #ffc33e, #6f4f07);
+  pointer-events: none;
+}
+
+.needle-section__footer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+}
+
+.gold-price-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.gold-price-row__left {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.gold-price-row__text {
+  font-family: 'GrowwSans', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--contentPrimary);
+}
+
+.gold-price-row__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--contentPositive);
+}
+
+.gold-price-row__amount {
+  font-family: 'Sohne', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--contentPrimary);
+}
+
+.gold-price-row__unit {
+  font-family: 'GrowwSans', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--contentSecondary);
+}
+
+.btn-primary__icon {
+  flex-shrink: 0;
+  margin-right: 4px;
+}
