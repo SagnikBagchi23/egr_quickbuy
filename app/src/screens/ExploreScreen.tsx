@@ -2,7 +2,7 @@ import { GoldWidget } from '../components/GoldWidget';
 import './ExploreScreen.css';
 
 interface Props {
-  iteration: 1 | 2 | 3 | 4 | 5 | 6 | 7;
+  iteration: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
   onBuy: (units: number) => void;
 }
 

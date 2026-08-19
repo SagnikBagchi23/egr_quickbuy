@@ -3,7 +3,7 @@ import { formatRupeeWhole, formatIndian, formatIndianWhole, getGoldPrice, calcRe
 import './GoldWidget.css';
 
 interface Props {
-  iteration: 1 | 2 | 3 | 4 | 5 | 6 | 7;
+  iteration: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
   onBuy: (units: number) => void;
 }
 
@@ -30,7 +30,10 @@ export function GoldWidget({ iteration, onBuy }: Props) {
   }, []);
 
   useEffect(() => {
-    if (iteration === 7) {
+    if (iteration === 8) {
+      setSliderValue(Math.round(price * 50));
+      setUnitSize('10mg');
+    } else if (iteration === 7) {
       setSliderValue(5000);
       setUnitSize('10mg');
     } else if (iteration === 6) {
@@ -117,7 +120,7 @@ export function GoldWidget({ iteration, onBuy }: Props) {
     <div className="gold-section">
       <div className="gold-section__header">
         <div className="gold-section__titles">
-          {iteration !== 6 && iteration !== 7 && (
+          {iteration !== 6 && iteration !== 7 && iteration !== 8 && (
             <div className="gold-section__live-tag">
               <div className="gold-section__live-dot" />
               <span className="gold-section__live-label">LIVE</span>
@@ -130,8 +133,83 @@ export function GoldWidget({ iteration, onBuy }: Props) {
         </div>
       </div>
 
-      <div className="gold-card" style={iteration === 6 || iteration === 7 ? { gap: 32 } : undefined}>
-        {iteration === 7 ? (
+      <div className="gold-card" style={iteration === 6 || iteration === 7 || iteration === 8 ? { gap: 32 } : undefined}>
+        {iteration === 8 ? (() => {
+          const unitPrice8 = unitSize === '10mg' ? price : price * 100;
+          const maxAmt8 = unitSize === '10mg' ? Math.floor(10000 * unitPrice8) : Math.floor(100 * unitPrice8);
+          const minAmt8 = Math.ceil(unitPrice8);
+          const wholeUnits8 = Math.floor(sliderValue / unitPrice8);
+          const approxReq8 = Math.round(wholeUnits8 * unitPrice8);
+          const mockBalance = 2537;
+          return (
+          <>
+            <div className="gold7-section">
+              <div className="gold7-toggle">
+                <button
+                  className={`gold7-toggle__pill ${unitSize === '10mg' ? 'gold7-toggle__pill--active' : ''}`}
+                  onClick={() => {
+                    setUnitSize('10mg');
+                    setSliderValue(Math.round(price * 50));
+                  }}
+                >
+                  10MG
+                </button>
+                <button
+                  className={`gold7-toggle__pill ${unitSize === '1g' ? 'gold7-toggle__pill--active' : ''}`}
+                  onClick={() => {
+                    setUnitSize('1g');
+                    setSliderValue(Math.round(price * 100 * 5));
+                  }}
+                >
+                  1G
+                </button>
+              </div>
+              <div className="gold7-qty">
+                <span className="gold7-qty__label">AMOUNT</span>
+                <span className="gold7-qty__value">₹{formatIndianWhole(approxReq8)}</span>
+                {wholeUnits8 > 0 && (
+                  <span className="gold8-units-note">{wholeUnits8} {unitSize === '10mg' ? '× 10mg' : '× 1g'} unit{wholeUnits8 !== 1 ? 's' : ''}</span>
+                )}
+              </div>
+              <div className="gold7-slider-wrap">
+                <input
+                  type="range"
+                  className="gold7-slider"
+                  min={minAmt8}
+                  max={maxAmt8}
+                  step={1}
+                  value={sliderValue}
+                  onChange={(e) => setSliderValue(parseInt(e.target.value))}
+                  style={{
+                    background: `linear-gradient(to right, var(--goldButtonStop1, #edb537) 0%, var(--goldButtonStop1, #edb537) ${((sliderValue - minAmt8) / (maxAmt8 - minAmt8)) * 100}%, var(--backgroundTertiary) ${((sliderValue - minAmt8) / (maxAmt8 - minAmt8)) * 100}%, var(--backgroundTertiary) 100%)`,
+                  }}
+                />
+              </div>
+            </div>
+            <div className="gold8-price-row">
+              <span className="gold8-price-row__label">GOLD PRICE ({unitSize === '10mg' ? '10MG' : '1G'})</span>
+              <span className="gold8-price-row__value">₹{formatIndian(unitPrice8)}</span>
+            </div>
+            <div className="needle-section__footer">
+              <div className="gold8-balance-row">
+                <span className="gold8-balance-row__text">Balance : ₹{formatIndianWhole(mockBalance)}</span>
+                <span className="gold8-balance-row__text">
+                  Approx req. : <span className="gold8-balance-row__dashed">₹{formatIndianWhole(approxReq8)}</span>
+                </span>
+              </div>
+              <button
+                className={`btn-primary btn-primary--md btn-primary--gold ${pressing ? 'btn-primary--pressed' : ''}`}
+                onClick={handleBuyClick}
+              >
+                <svg className="btn-primary__icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M9 2L4 9h4l-1 5 5-7H8l1-5z" fill="currentColor" />
+                </svg>
+                Quick buy
+              </button>
+            </div>
+          </>
+          );
+        })() : iteration === 7 ? (
           <>
             <div className="gold7-section">
               <div className="gold7-toggle">
