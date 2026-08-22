@@ -142,6 +142,16 @@ export function GoldWidget({ iteration, onBuy }: Props) {
           const mockBalance = 2537;
           return (
           <>
+            <div className="gold8-hero-price">
+              <div className="gold8-hero-price__left">
+                <span className="gold8-hero-price__eyebrow">GOLD PRICE (10MG)</span>
+                <span className="gold8-hero-price__amount">₹{formatIndian(unitPrice8)}</span>
+              </div>
+              <div className="gold8-hero-price__badge">
+                <div className="gold8-hero-price__dot" />
+                <span className="gold8-hero-price__live">LIVE</span>
+              </div>
+            </div>
             <div className="gold7-section">
               <div className="gold7-qty">
                 <span className="gold7-qty__label">AMOUNT</span>
@@ -164,10 +174,6 @@ export function GoldWidget({ iteration, onBuy }: Props) {
                   }}
                 />
               </div>
-            </div>
-            <div className="gold8-price-row">
-              <span className="gold8-price-row__label">GOLD PRICE (10MG)</span>
-              <span className="gold8-price-row__value">₹{formatIndian(unitPrice8)}</span>
             </div>
             <div className="needle-section__footer">
               <div className="gold8-balance-row">
